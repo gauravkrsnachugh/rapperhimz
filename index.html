@@ -58,7 +58,15 @@
 				<div class="collapse navbar-collapse navbar-right" id="navbar">
 					<div class="top-nav">
 
-					<a href="#player" class="hover-effect scroll">
+					<a href="index.html" class="hover-effect scroll">
+							<span>
+								<span>HIMZ</span>
+								<span>HIMZ</span>
+								<span></span>
+							</span>
+						</a>
+					
+					<a href="#player" class="hover-effect scroll" id="music">
 							<span>
 								<span>MUSIC</span>
 								<span>MUSIC</span>
@@ -66,7 +74,7 @@
 							</span>
 						</a>
 
-						<a href="#player" class="hover-effect scroll">
+						<a href="#player" class="hover-effect scroll" id="video">
 							<span>
 								<span>VIDEOS</span>
 								<span>VIDEOS</span>
@@ -74,13 +82,7 @@
 							</span>
 						</a>
 
-							<!--<a href="#gallery" class="hover-effect scroll">
-							<span>
-								<span>GALLERY</span>
-								<span>GALLERY</span>
-								<span></span>
-							</span>
-						</a>
+							<!--
 
 						<a href="#team" class="hover-effect scroll">
 							<span>
@@ -90,7 +92,7 @@
 							</span>
 						</a>-->
 
-						<a href="#contact" class="hover-effect scroll">
+						<a href="#contact" class="hover-effect scroll" id="contacts">
 							<span>
 								<span>CONTACT</span>
 								<span>CONTACT</span>
@@ -106,7 +108,7 @@
 		<!-- //Navbar -->
 
 		<!-- Slider -->
-		<div class="slider">
+		<div class="slider" id="slider">
 			<ul class="rslides" id="slider1">
 				<li>
 					<img src="images/slide-1.jpg" alt="RapperHimz">
@@ -158,11 +160,14 @@
 	
 	</div>
 	
+	<div class="container" id="beats">
 	
-	
-	<div class="player" id="player">
 	</div>
+
 	
+	<div class="player" id="player" >
+	</div>
+		
 	
 	
 	<!-- Contact -->
@@ -321,40 +326,84 @@
 	
 	<script>
 var music = '<iframe id="musicPlayer" width="100%" height="600" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/7363038&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>';
-var video = '<iframe id="videoPlayer" width="100%" height="600" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/7363038&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>';
+var video = '<iframe id="videoPlayer" width="100%" height="600" src="https://www.youtube.com/embed/videoseries?list=PLRkNIEHJL0vlzE1hyVKwRDWE5Irs90hxf" frameborder="0" allowfullscreen></iframe>';
+var beat='<div id="checkOutBeats"><h1> Checkout the Beats with the One n Only</h1><br/>	<h1> RapperHimz </h1></div>';
+
 var contact=$("#contact");
 var map=$("#map");
+var slider=$("#slider");
+var beats=$("#beats");
+
+
 $(document).ready(function(){
+
+$( "#contacts" ).click(function( event ) {
+	var musicPlayer = $("#musicPlayer");
+		var videoPlayer = $("#videoPlayer");
+		if(musicPlayer.length>0){
+		musicPlayer.remove();
+		}
+		if(videoPlayer.length>0){
+		videoPlayer.remove();
+		}
+		slider.show();
+		contact.show();
+		map.show();
+		beats.hide();
+});
+
 	$( "#music" ).click(function( event ) {
 		var musicPlayer = $("#musicPlayer");
 		var videoPlayer = $("#videoPlayer");
+		var checkOutBeats=$("#checkOutBeats");
+		
 		if(musicPlayer.length>0){
 			musicPlayer.remove();
 			map.show();
 			contact.show();
+			slider.show();
+			beats.hide();
+				
 		}else{
 			if(videoPlayer.length>0){
-				videoPlayer.remove();
+				videoPlayer.remove();	
 			}
+			if(checkOutBeats.length>0){
+				checkOutBeats.remove();
+			}
+			$("#beats").append(beat);
 			$( "#player" ).append(music);
+			
 			map.hide();
 			contact.hide();
+			slider.hide();
+			beats.show();
 		}
 	});
 	$( "#video" ).click(function( event ) {
 		var musicPlayer = $("#musicPlayer");
 		var videoPlayer = $("#videoPlayer");
+		var checkOutBeats=$("#checkOutBeats");
 		if(videoPlayer.length>0){
 			videoPlayer.remove();
 			map.show();
 			contact.show();
+			slider.show();
+			beats.hide();
 		}else{
 			if(musicPlayer.length>0){
 				musicPlayer.remove();
 			}
+			if(checkOutBeats.length>0){
+					checkOutBeats.remove();
+			}
+			$("#beats").append(beat);
 			$( "#player" ).append(video);
+			
 			map.hide();
 			contact.hide();
+			slider.hide();
+			beats.show();
 		}
 	});
 });
